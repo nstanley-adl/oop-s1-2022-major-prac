@@ -1,6 +1,12 @@
 #include <iostream>
+#include "Game.h"
+
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    cout << "starting game..." << endl;
+    Game g;
+    g.run();
+    cout << "game has exited. " << endl;
     return 0;
 }
