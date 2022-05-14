@@ -9,13 +9,14 @@
 
 class AppState {
 protected:
-    bool isEnabled;
+    bool enabled;
     sf::RenderWindow* window;
     EntityRenderer* renderer;
 public:
     AppState(sf::RenderWindow* window, EntityRenderer* renderer);
     void enable();
     void disable();
+    bool isEnabled();
     virtual void onEnable() = 0;
     virtual void onDisable() = 0;
     virtual void update(float delta) = 0;

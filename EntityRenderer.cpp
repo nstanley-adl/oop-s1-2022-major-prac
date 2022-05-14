@@ -8,14 +8,13 @@
 
 using namespace std;
 
-EntityRenderer::EntityRenderer(sf::RenderWindow *window) {
+EntityRenderer::EntityRenderer(sf::RenderWindow *window): entities() {
     this->window = window;
-    numOfEntities = 0;
 }
 
 void EntityRenderer::update(float delta) {
-    for (int i = 0; i < numOfEntities; i++) {
-        entities[i]->update(delta);
+    for (auto i = entities.begin(); i < entities.end(); i++) {
+        (*i)->update(delta);
     }
 }
 
@@ -24,20 +23,17 @@ void EntityRenderer::preRender() {
 }
 
 void EntityRenderer::render(float delta) {
-    for (int i = 0; i < numOfEntities; i++) {
-        entities[i]->update(delta);
-        entities[i]->render(delta);
+    for (auto i = entities.begin(); i < entities.end(); i++) {
+        (*i)->render(delta);
     }
 }
 
 void EntityRenderer::postRender() {
     window->display();
-    numOfEntities = 0;
+    entities.clear();
+//    gentle_assert(entities.empty());
 }
 
 void EntityRenderer::renderEntity(Entity *entity) {
-    if (numOfEntities < MAX_ENTITIES) {
-        entities[numOfEntities] = entity;
-        numOfEntities++;
-    }  else throw std::length_error("Attempt to render too many entities, oh no!");
+    entities.push_back(entity);
 }

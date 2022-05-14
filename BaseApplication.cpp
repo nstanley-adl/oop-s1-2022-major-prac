@@ -5,15 +5,13 @@
 #include <SFML/Graphics.hpp>
 #include <stdexcept>
 #include "BaseApplication.h"
+#include "GentleAssert.h"
 
 
-BaseApplication::BaseApplication() {
-    isRunning = false;
-    deltaTime = 0.f;
+BaseApplication::BaseApplication(): appStates(), isRunning(false), deltaTime(0.f) {
     window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "a1850484 - Practical Project", sf::Style::Close | sf::Style::Titlebar);
     window->setVerticalSyncEnabled(true);
     renderer = new EntityRenderer(window);
-    numberOfAppStates = 0;
 }
 
 void BaseApplication::run() {
@@ -25,9 +23,12 @@ void BaseApplication::run() {
         sf::Event event;
         update(deltaTime);
         render(deltaTime);
-        for (int i = 0; i < numberOfAppStates; i++) {
-            appStates[i]->update(deltaTime);
-            appStates[i]->render(deltaTime);
+        for (auto i = appStates.begin(); i != appStates.end(); i++) {
+            if ((*i)->isEnabled()) {
+                gentle_assert((*i)->isEnabled());
+                (*i)->update(deltaTime);
+                (*i)->render(deltaTime);
+            }
         }
         renderer->update(deltaTime);
         renderer->preRender();
@@ -61,10 +62,7 @@ sf::RenderWindow *BaseApplication::getWindow() const {
 }
 
 void BaseApplication::trackAppState(AppState *appStateToTrack) {
-    if (numberOfAppStates < MAX_TRACKED_APP_STATES) {
-        appStates[numberOfAppStates] = appStateToTrack;
-        numberOfAppStates++;
-    } else throw std::length_error("Maximum number of AppStates reached!");
+    appStates.push_back(appStateToTrack);
 }
 
 

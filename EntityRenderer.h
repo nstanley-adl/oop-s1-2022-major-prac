@@ -5,15 +5,15 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "Entity.h"
 
-const int MAX_ENTITIES = 500;
+using namespace std;
 
 class EntityRenderer {
 protected:
     sf::RenderWindow* window;
-    Entity* entities[MAX_ENTITIES]{};
-    int numOfEntities;
+    vector<Entity*> entities;
 public:
     EntityRenderer(sf::RenderWindow* window);
     void preRender();

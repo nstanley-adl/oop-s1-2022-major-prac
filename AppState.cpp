@@ -5,15 +5,19 @@
 #include "AppState.h"
 
 AppState::AppState(sf::RenderWindow* renderWindow, EntityRenderer* entityRenderer): window(renderWindow), renderer(entityRenderer) {
-    isEnabled = false;
+    enabled = false;
 }
 
 void AppState::enable() {
-    isEnabled = true;
+    enabled = true;
     onEnable();
 }
 
 void AppState::disable() {
-    isEnabled = false;
+    enabled = false;
     onDisable();
+}
+
+bool AppState::isEnabled() {
+    return enabled;
 }

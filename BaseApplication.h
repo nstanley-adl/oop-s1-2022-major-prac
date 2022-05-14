@@ -5,12 +5,12 @@
 #ifndef GAMEAPPLICATION_H
 #define GAMEAPPLICATION_H
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "GameConstants.h"
 #include "AppState.h"
 #include "EntityRenderer.h"
 
-
-const int MAX_TRACKED_APP_STATES = 35;
+using namespace std;
 
 class BaseApplication {
 protected:
@@ -19,8 +19,7 @@ protected:
     sf::RenderWindow* window;
     sf::Clock deltaClock;
     float deltaTime;
-    int numberOfAppStates;
-    AppState* appStates[MAX_TRACKED_APP_STATES]{};
+    vector<AppState*> appStates;
 
     virtual void initialise() = 0;
     virtual void update(float delta) = 0;
