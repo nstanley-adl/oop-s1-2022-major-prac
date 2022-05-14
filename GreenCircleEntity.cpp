@@ -4,6 +4,9 @@
 
 #include "GreenCircleEntity.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
+using namespace std;
 
 void GreenCircleEntity::render(float delta) {
     window->draw(*circleShape);
@@ -19,6 +22,6 @@ GreenCircleEntity::~GreenCircleEntity() {
 }
 
 void GreenCircleEntity::update(float delta) {
-
+    circleShape->setPosition(getXPosition(), getYPosition());
 }
 

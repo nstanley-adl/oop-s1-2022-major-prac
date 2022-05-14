@@ -2,8 +2,8 @@
 // Created by nstan on 9/05/2022.
 //
 
-#ifndef OOP_S1_2022_MAJOR_PRAC_GAME_H
-#define OOP_S1_2022_MAJOR_PRAC_GAME_H
+#ifndef GAME_H
+#define GAME_H
 
 #include "BaseApplication.h"
 #include "GreenCircleEntity.h"
@@ -20,4 +20,4 @@ public:
 };
 
 
-#endif //OOP_S1_2022_MAJOR_PRAC_GAME_H
+#endif //GAME_H

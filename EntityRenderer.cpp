@@ -13,12 +13,19 @@ EntityRenderer::EntityRenderer(sf::RenderWindow *window) {
     numOfEntities = 0;
 }
 
+void EntityRenderer::update(float delta) {
+    for (int i = 0; i < numOfEntities; i++) {
+        entities[i]->update(delta);
+    }
+}
+
 void EntityRenderer::preRender() {
     window->clear();
 }
 
 void EntityRenderer::render(float delta) {
     for (int i = 0; i < numOfEntities; i++) {
+        entities[i]->update(delta);
         entities[i]->render(delta);
     }
 }

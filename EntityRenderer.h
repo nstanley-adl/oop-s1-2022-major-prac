@@ -20,6 +20,8 @@ public:
     void render(float delta);
     void postRender();
     void renderEntity(Entity* entity);
+
+    void update(float delta);
 };
 
 

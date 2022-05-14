@@ -5,11 +5,11 @@
 #ifndef GAMEAPPLICATION_H
 #define GAMEAPPLICATION_H
 #include <SFML/Graphics.hpp>
+#include "GameConstants.h"
 #include "AppState.h"
 #include "EntityRenderer.h"
 
-const int WINDOW_WIDTH = 1080;
-const int WINDOW_HEIGHT = 720;
+
 const int MAX_TRACKED_APP_STATES = 35;
 
 class BaseApplication {

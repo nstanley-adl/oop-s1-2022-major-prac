@@ -29,6 +29,7 @@ void BaseApplication::run() {
             appStates[i]->update(deltaTime);
             appStates[i]->render(deltaTime);
         }
+        renderer->update(deltaTime);
         renderer->preRender();
         renderer->render(deltaTime);
         renderer->postRender();

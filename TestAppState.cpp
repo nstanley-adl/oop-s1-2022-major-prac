@@ -27,4 +27,5 @@ TestAppState::~TestAppState() {
 
 TestAppState::TestAppState(sf::RenderWindow *window, EntityRenderer *renderer) : AppState(window, renderer) {
     circleEntity = new GreenCircleEntity(window);
+    circleEntity->setPosition(500,500);
 }

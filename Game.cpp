@@ -18,7 +18,7 @@ void Game::initialise() {
 }
 
 void Game::update(float delta) {
-    cout << delta << endl;
+    
 }
 
 void Game::render(float delta) {
