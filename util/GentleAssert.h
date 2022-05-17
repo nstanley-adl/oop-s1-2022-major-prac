@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#ifdef NDEBUG
+#ifndef NDEBUG
 int tRun = 0;
 int tPass = 0;
 
