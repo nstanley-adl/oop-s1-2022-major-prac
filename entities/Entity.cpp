@@ -35,5 +35,9 @@ void Entity::setYPosition(float y) {
     position->y = y;
 }
 
+sf::Vector2<float> *Entity::getPosition() const {
+    return position;
+}
+
 
 

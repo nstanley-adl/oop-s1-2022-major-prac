@@ -38,6 +38,8 @@ void BaseApplication::run() {
             if (event.type == sf::Event::Closed)
                 exit();
         }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            exit();
     }
     window->close();
 }

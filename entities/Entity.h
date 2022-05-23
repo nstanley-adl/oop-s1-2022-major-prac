@@ -21,6 +21,9 @@ public:
     void setYPosition(float y);
     float getXPosition();
     float getYPosition();
+
+    sf::Vector2<float> *getPosition() const;
+
     ~Entity();
 };
 

@@ -21,6 +21,7 @@ PlayerEntity::PlayerEntity(sf::RenderWindow* window) : DamageableEntity(window, 
 }
 
 void PlayerEntity::render(float delta, float camX, float camY) {
+    setPosition(camX+(WINDOW_WIDTH/2)-PLAYER_RADIUS, camY+(WINDOW_HEIGHT/2)-PLAYER_RADIUS);
     playerSprite->setPosition((WINDOW_WIDTH/2)-PLAYER_RADIUS, (WINDOW_HEIGHT/2)-PLAYER_RADIUS);
     if (camY < prevCamY) {
         playerSprite->setTextureRect(sf::IntRect(16,0,16,16));

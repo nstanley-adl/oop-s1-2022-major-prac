@@ -4,7 +4,7 @@
 
 #include "DamageableEntity.h"
 
-DamageableEntity::DamageableEntity(sf::RenderWindow *window, float maxHealth) : Entity(window), maxHealth(maxHealth) {}
+DamageableEntity::DamageableEntity(sf::RenderWindow *window, float maxHealth) : Entity(window), maxHealth(maxHealth), health(maxHealth) {}
 
 void DamageableEntity::heal(float amount) {
     if (health + amount > maxHealth) health = maxHealth;

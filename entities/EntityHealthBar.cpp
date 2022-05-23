@@ -7,14 +7,16 @@
 EntityHealthBar::EntityHealthBar(sf::RenderWindow *window, DamageableEntity *entityFor, const sf::Vector2f &offsetFromEntityPosition):Entity(window), entityFor(entityFor), offsetFromEntityPosition(offsetFromEntityPosition),
                                                                                                                                       backgroundRect(),
                                                                                                                                       healthRect() {
-    backgroundRect.setFillColor(sf::Color(127, 127, 127));
-    backgroundRect.setSize(sf::Vector2f(HEALTH_BAR_WIDTH, 20));
-    healthRect.setFillColor(sf::Color::Green);
+    backgroundRect.setFillColor(sf::Color(127, 127, 127, 100));
+    backgroundRect.setSize(sf::Vector2f(HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT));
+    healthRect.setFillColor(sf::Color(0,255,0,100));
     healthRect.setSize(sf::Vector2f(HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT));
 }
 
 void EntityHealthBar::update(float delta) {
     healthRect.setSize(sf::Vector2f(HEALTH_BAR_WIDTH*entityFor->getHealthAsDecimal(), HEALTH_BAR_HEIGHT));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+        entityFor->damage(1);
 }
 
 void EntityHealthBar::render(float delta, float camX, float camY) {

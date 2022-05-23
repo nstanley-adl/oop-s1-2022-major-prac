@@ -9,9 +9,10 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "DamageableEntity.h"
+#include "../engine/GameConstants.h"
 
-const int HEALTH_BAR_HEIGHT = 20;
-const int HEALTH_BAR_WIDTH = 200;
+const int HEALTH_BAR_HEIGHT = 1 * GAME_SCALE;
+const int HEALTH_BAR_WIDTH = 16 * GAME_SCALE;
 
 class EntityHealthBar: public Entity {
 protected:

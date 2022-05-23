@@ -2,7 +2,6 @@
 // Created by nstan on 7/05/2022.
 //
 
-#include <iostream>
 #include <stdexcept>
 #include "EntityRenderer.h"
 

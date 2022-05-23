@@ -31,3 +31,7 @@ void TileEntity::render(float delta, float camX, float camY) {
     tileSprite->setPosition(getXPosition() - camX, getYPosition() - camY);
     window->draw(*tileSprite);
 }
+
+TileEntity::~TileEntity() {
+    delete tileSprite;
+}
