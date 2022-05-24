@@ -57,23 +57,27 @@ bool BulletStream::checkCollision(const sf::Vector2f &targetPoint, bool drawDebu
     circles.clear();
 
     if (drawDebugCircles) {
-        sf::CircleShape* circleShape = new sf::CircleShape(HIT_MAGNITUDE);
+        sf::CircleShape* circleShape = new sf::CircleShape(HIT_MAGNITUDE/2);
         circleShape->setPosition(targetPoint.x - (HIT_MAGNITUDE/2), targetPoint.y - (HIT_MAGNITUDE/2));
-        circleShape->setFillColor(sf::Color::Green);
+        circleShape->setFillColor(sf::Color(0,255,0,230));
         circles.push_back(circleShape);
     }
+//    cout << "-------------" << endl;
     int count = 0;
     do {
-        t = SEARCH_DISTANCE / dist;
+        t = SEARCH_OFFSET / dist;
         searchPoint.x = ((1.f - t) * startPoint.x + t * endPoint.x);
         searchPoint.y = ((1.f - t) * startPoint.y + t * endPoint.y);
-        targetDist = sqrt(pow(searchPoint.x - targetPoint.y, 2.0) + pow(searchPoint.y - targetPoint.x, 2.0));
-        if (targetDist <= HIT_MAGNITUDE) return true;
+        targetDist = sqrt(pow(searchPoint.x - targetPoint.x, 2.0) + pow(targetPoint.y - searchPoint.y, 2.0));
+        if (targetDist <= HIT_MAGNITUDE) {return true;}
+//        cout << targetDist << " ";
+//        printf("(%f,%f) - (%f,%f)\n", searchPoint.x, searchPoint.y, targetPoint.x, targetPoint.y);
+//        cout << endl;
         startPoint = searchPoint;
         if (drawDebugCircles) {
-            sf::CircleShape* circleShape = new sf::CircleShape(HIT_MAGNITUDE);
-            circleShape->setPosition(searchPoint.x - (HIT_MAGNITUDE/2), searchPoint.y - (HIT_MAGNITUDE/2));
-            circleShape->setFillColor(sf::Color::Red);
+            sf::CircleShape* circleShape = new sf::CircleShape(20);
+            circleShape->setPosition(searchPoint.x - 10, searchPoint.y - 10);
+            circleShape->setFillColor(sf::Color(255, 0,0,230));
             circles.push_back(circleShape);
         }
         count++;

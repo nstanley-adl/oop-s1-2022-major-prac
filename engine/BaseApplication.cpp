@@ -7,10 +7,12 @@
 #include "../util/GentleAssert.h"
 
 
-BaseApplication::BaseApplication(): appStates(), isRunning(false), deltaTime(0.f) {
+BaseApplication::BaseApplication(): appStates(), isRunning(false), deltaTime(0.f), enterPressed(false), escapePressed(false), playerInput() {
+    camX = new float(0);
+    camY = new float(0);
     window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "a1850484 - Practical Project", sf::Style::Close | sf::Style::Titlebar);
     window->setVerticalSyncEnabled(true);
-    renderer = new EntityRenderer(window);
+    renderer = new EntityRenderer(window, camX, camY);
 }
 
 void BaseApplication::run() {
@@ -20,26 +22,40 @@ void BaseApplication::run() {
     while (isRunning && window->isOpen()) {
         deltaTime = deltaClock.restart().asSeconds();
         sf::Event event;
-        update(deltaTime);
-        render(deltaTime);
+        update(deltaTime, *camX, *camY);
+        render(deltaTime, *camX, *camY);
+        renderer->preRender();
         for (auto i = appStates.begin(); i != appStates.end(); i++) {
             if ((*i)->isEnabled()) {
                 gentle_assert((*i)->isEnabled());
-                (*i)->update(deltaTime);
-                (*i)->render(deltaTime);
+                (*i)->update(deltaTime, *camX, *camY);
+                (*i)->render(deltaTime, *camX, *camY);
             }
         }
         renderer->update(deltaTime);
-        renderer->preRender();
         renderer->render(deltaTime);
         renderer->postRender();
+        escapePressed = false;
+        enterPressed = false;
         while (window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 exit();
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape)
+                    escapePressed = true;
+                if (event.key.code == sf::Keyboard::Enter)
+                    enterPressed = true;
+            }
+            if (event.type == sf::Event::TextEntered) {
+                if (isalnum(event.text.unicode)) {
+                    playerInput += event.text.unicode;
+                }
+                if (event.text.unicode == 8 && playerInput.size() > 0) {
+                    playerInput.pop_back();
+                }
+            }
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-            exit();
     }
     window->close();
 }

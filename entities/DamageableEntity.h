@@ -19,6 +19,8 @@ public:
     float getHealth();
     bool isDead();
     float getHealthAsDecimal();
+
+    float getMaxHealth() const;
 };
 
 

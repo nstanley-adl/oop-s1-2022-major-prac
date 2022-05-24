@@ -14,13 +14,16 @@ class EndScreenAppState: public AppState {
 protected:
     TileMapLevel level;
     ScreenLabelEntity labelEntity;
+    sf::Font font;
+    sf::Text text;
+    long* score;
 public:
-    EndScreenAppState(sf::RenderWindow *window, EntityRenderer *renderer);
+    EndScreenAppState(sf::RenderWindow *window, EntityRenderer *renderer, long* score);
 
     void onEnable() override;
     void onDisable() override;
-    void update(float delta) override;
-    void render(float delta) override;
+    void update(float delta, float camX, float camY) override;
+    void render(float delta, float camX, float camY) override;
 
 };
 

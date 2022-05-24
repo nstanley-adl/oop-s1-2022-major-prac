@@ -18,7 +18,7 @@ TileMapLevel::TileMapLevel(string levelFileName, sf::RenderWindow *window,
             stringstream str(line);
             while (getline(str, tileType, ',')) {
                 auto* tile = new TileEntity(window, stoi(tileType), tileMapTextureUnit);
-                tile->setPosition(col*(tileMapTextureUnit*GAME_SCALE), row*(tileMapTextureUnit*GAME_SCALE));
+                tile->setPosition(col*(tileMapTextureUnit*GAME_SCALE)-2000, row*(tileMapTextureUnit*GAME_SCALE)-2000);
                 tiles.push_back(tile);
                 col++;
             }

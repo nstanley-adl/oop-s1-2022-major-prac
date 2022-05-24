@@ -13,11 +13,12 @@ using namespace std;
 class EntityRenderer {
 protected:
     sf::RenderWindow* window;
-    sf::Vector2f cameraPosition;
     vector<Entity*> entities;
+    float* camX;
+    float* camY;
     float baseSpeed;
 public:
-    EntityRenderer(sf::RenderWindow* window);
+    EntityRenderer(sf::RenderWindow *window, float *camX, float *camY);
     void preRender();
     void render(float delta);
     void postRender();

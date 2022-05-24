@@ -19,8 +19,8 @@ public:
     bool isEnabled();
     virtual void onEnable() = 0;
     virtual void onDisable() = 0;
-    virtual void update(float delta) = 0;
-    virtual void render(float delta) = 0;
+    virtual void update(float delta, float camX, float camY) = 0;
+    virtual void render(float delta, float camX, float camY) = 0;
 };
 
 

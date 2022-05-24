@@ -19,11 +19,16 @@ protected:
     sf::RenderWindow* window;
     sf::Clock deltaClock;
     float deltaTime;
+    float* camX;
+    float* camY;
     vector<AppState*> appStates;
+    bool escapePressed;
+    bool enterPressed;
+    string playerInput;
 
     virtual void initialise() = 0;
-    virtual void update(float delta) = 0;
-    virtual void render(float delta) = 0;
+    virtual void update(float delta, float camX, float camY) = 0;
+    virtual void render(float delta, float camX, float camY) = 0;
 public:
     BaseApplication();
     void run();

@@ -14,19 +14,19 @@ TitleScreenAppState::TitleScreenAppState(sf::RenderWindow *window, EntityRendere
 
 
 void TitleScreenAppState::onEnable() {
-
+    labelEntity.resetColour();
 }
 
 void TitleScreenAppState::onDisable() {
 
 }
 
-void TitleScreenAppState::update(float delta) {
+void TitleScreenAppState::update(float delta, float camX, float camY) {
 
 }
 
-void TitleScreenAppState::render(float delta) {
-    level.render(renderer);
+void TitleScreenAppState::render(float delta, float camX, float camY) {
+//    level.render(renderer);
     renderer->renderEntity(&labelEntity);
 }
 

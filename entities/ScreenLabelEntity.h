@@ -22,6 +22,7 @@ public:
     ScreenLabelEntity(sf::RenderWindow *window, string fileName);
     void update(float delta) override;
     void render(float delta, float camX, float camY) override;
+    void resetColour();
 
 };
 

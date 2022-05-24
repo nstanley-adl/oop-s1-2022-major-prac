@@ -7,33 +7,35 @@
 
 using namespace std;
 
-EntityRenderer::EntityRenderer(sf::RenderWindow *window): entities(), cameraPosition(), baseSpeed(400) {
+EntityRenderer::EntityRenderer(sf::RenderWindow *window, float *camX, float *camY)
+        : entities(), baseSpeed(600), camX(camX), camY(camY) {
     this->window = window;
+
 }
 
 void EntityRenderer::update(float delta) {
     float speed = baseSpeed * delta;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { // strafe up left
-        cameraPosition.y -= speed/2.f;
-        cameraPosition.x -= speed/2.f;
+        *camY -= speed/2.f;
+        *camX -= speed/2.f;
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S)) { // strafe down left
-        cameraPosition.y += speed/2.f;
-        cameraPosition.x -= speed/2.f;
+        *camY += speed/2.f;
+        *camX -= speed/2.f;
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { // strafe down right
-        cameraPosition.y += speed/2.f;
-        cameraPosition.x += speed/2.f;
+        *camY += speed/2.f;
+        *camX += speed/2.f;
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W)) { // strafe up right
-        cameraPosition.y -= speed/2.f;
-        cameraPosition.x += speed/2.f;
+        *camY -= speed/2.f;
+        *camX += speed/2.f;
     } else {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            cameraPosition.y -= speed;
+            *camY-= speed;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            cameraPosition.x -= speed;
+            *camX -= speed;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            cameraPosition.y += speed;
+            *camY += speed;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            cameraPosition.x += speed;
+            *camX += speed;
     }
 
 //
@@ -50,7 +52,7 @@ void EntityRenderer::preRender() {
 
 void EntityRenderer::render(float delta) {
     for (auto i = entities.begin(); i < entities.end(); i++) {
-        (*i)->render(delta, cameraPosition.x, cameraPosition.y);
+        (*i)->render(delta, *camX, *camY);
     }
 }
 

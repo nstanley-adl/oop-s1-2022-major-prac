@@ -30,4 +30,8 @@ float DamageableEntity::getHealthAsDecimal() {
     return health/maxHealth;
 }
 
+float DamageableEntity::getMaxHealth() const {
+    return maxHealth;
+}
+
 

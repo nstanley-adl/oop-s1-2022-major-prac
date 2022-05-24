@@ -19,8 +19,8 @@ public:
 
     void onEnable() override;
     void onDisable() override;
-    void update(float delta) override;
-    void render(float delta) override;
+    void update(float delta, float camX, float camY) override;
+    void render(float delta, float camX, float camY) override;
 
 };
 

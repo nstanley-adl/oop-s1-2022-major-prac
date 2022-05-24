@@ -6,9 +6,9 @@
 #define OOP_S1_2022_MAJOR_PRAC_BULLETSTREAM_H
 
 
-const float MAX_SEARCHES = 1;
-const float SEARCH_DISTANCE = 60;
-const float HIT_MAGNITUDE = 60;
+const int MAX_SEARCHES = 30; // number of points to search.
+const float SEARCH_OFFSET = 30; // offset between search points.
+const float HIT_MAGNITUDE = 100; // distance to register hits within search points.
 
 #include "Entity.h"
 
