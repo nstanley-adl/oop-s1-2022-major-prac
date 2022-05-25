@@ -37,7 +37,6 @@ void EnterScore::update(float delta, float camX, float camY) {
             scoreRecord.setName(*playerInput);
             highScoreManager->addScore(scoreRecord);
             done = true;
-            cout << "DONE" << endl;
         }
     }
 

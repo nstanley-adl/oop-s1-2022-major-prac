@@ -40,7 +40,6 @@ HighScoreManager::~HighScoreManager() {
     ofstream saveFile(SAVE_FILE);
     for (int i = 0; i < 5; i++) {
         ScoreRecord* scoreRecord = scores.at(i);
-        cout << scoreRecord->getName() << endl;
         saveFile << string(scoreRecord->getName() + "," + to_string(scoreRecord->getScore()) + "\n").c_str();
     }
     saveFile.close();
